@@ -1,24 +1,25 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import Header from "./components/Header"
 import Search from "./pages/Search"
 import Watchlist from "./pages/Watchlist"
 
 function App() {
-  const [searchItem, setSearchItem] = useState("")
-  const [searchData, setSearchData] = useState([])
-  const [watchlist, setWatchlist] = useState([])
-
+  let checkLocalStorage = []
   let moviesInLocalStorage = JSON.parse(localStorage.getItem("watchList"))
   console.log(moviesInLocalStorage)
 
-  useEffect(() => {
-    if (moviesInLocalStorage) {
-      setWatchlist(moviesInLocalStorage)
-    } else {
-      setWatchlist([])
-    }
-  }, [])
+  if (moviesInLocalStorage.length > 0) {
+    checkLocalStorage = moviesInLocalStorage
+  } else {
+    checkLocalStorage = []
+  }
+
+  const [searchItem, setSearchItem] = useState("")
+  const [searchData, setSearchData] = useState([])
+  const [watchlist, setWatchlist] = useState(checkLocalStorage)
+
+  // localStorage.clear()
 
   const handleChange = (e) => {
     setSearchItem(e.target.value)
@@ -43,7 +44,8 @@ function App() {
             movie.release_date !== "" &&
             movie.overview !== "" &&
             movie.release_date !== undefined &&
-            movie.poster_path !== null
+            movie.poster_path !== null &&
+            movie.vote_average !== 0
         )
 
         setSearchData(filteredList)
@@ -59,20 +61,26 @@ function App() {
       .pop()
 
     console.log(newListItem)
-    watchlist.push(newListItem)
-    localStorage.setItem("watchList", JSON.stringify(watchlist))
+
+    setWatchlist((prevList) => {
+      return [...prevList, newListItem]
+    })
   }
 
   // REMOVE MOVIE FROM THE WATCHLIST ARRAY
   function removeFromWatchlist(id) {
-    console.log(`Clicked! ${id}`)
-    const listArray = JSON.parse(localStorage.getItem("watchList"))
-    const newArr = listArray.filter((movie) => {
-      return movie.id !== Number(id)
+    // console.log(`Clicked! ${id}`)
+
+    setWatchlist((prevList) => {
+      return prevList.filter((movie) => {
+        return movie.id !== Number(id)
+      })
     })
 
-    localStorage.setItem("watchList", JSON.stringify(newArr))
+    // localStorage.setItem("watchList", JSON.stringify(watchlist))
   }
+
+  localStorage.setItem("watchList", JSON.stringify(watchlist))
 
   return (
     <div>
@@ -86,10 +94,19 @@ function App() {
               onClick={handleClick}
               movieList={searchData}
               addToWatchlist={addToWatchlist}
+              watchlist={watchlist}
             />
           }
         />
-        <Route path="watchlist" element={<Watchlist watchlist={watchlist} />} />
+        <Route
+          path="watchlist"
+          element={
+            <Watchlist
+              watchlist={watchlist}
+              removeMovie={removeFromWatchlist}
+            />
+          }
+        />
       </Routes>
     </div>
   )

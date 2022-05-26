@@ -1,19 +1,22 @@
-import React from "react"
 import WatchlistItem from "../components/WatchlistItem"
 
 const Watchlist = (props) => {
   const data = props.watchlist
   console.log(data)
 
-  const checkAnyMovies = data.length === 0 ? "No movies in your watchlist" : ""
-
   const displayWatchlistHtml = data.map((movie) => {
-    return <WatchlistItem key={movie.id} movie={movie} />
+    return (
+      <WatchlistItem
+        key={movie.id}
+        movie={movie}
+        removeMovie={props.removeMovie}
+      />
+    )
   })
 
   return (
     <div className="container">
-      <h2>{checkAnyMovies}</h2>
+      {data.length === 0 && <h2>No movies in your watchlist!</h2>}
       {displayWatchlistHtml}
     </div>
   )

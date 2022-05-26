@@ -108,7 +108,8 @@ button {
 }
 
 .gg-add,
-.gg-remove {
+.gg-remove,
+.gg-check-r {
   margin-right: 0.5em;
 }
 

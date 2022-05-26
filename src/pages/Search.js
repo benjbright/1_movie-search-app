@@ -1,4 +1,3 @@
-import React from "react"
 import SearchBar from "../components/SearchBar"
 import SearchItem from "../components/SearchItem"
 
@@ -11,6 +10,7 @@ const Search = (props) => {
         key={movie.id}
         movie={movie}
         addToWatchlist={props.addToWatchlist}
+        watchlist={props.watchlist}
       />
     )
   })
@@ -18,6 +18,8 @@ const Search = (props) => {
   return (
     <div className="container">
       <SearchBar onChange={props.onChange} onClick={props.onClick} />
+      {data.length === 0 && <h2>Please search for your movie!</h2>}
+      {data.length > 0 && <p>Your search found {data.length} movies:</p>}
       <div className="search-list-display">{displayMoviesHtml}</div>
     </div>
   )

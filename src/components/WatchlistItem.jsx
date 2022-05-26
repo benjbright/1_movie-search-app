@@ -1,4 +1,4 @@
-const WatchlistItem = ({ movie }) => {
+const WatchlistItem = ({ movie, removeMovie }) => {
   const poster =
     movie.poster_path != null
       ? `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`
@@ -13,7 +13,11 @@ const WatchlistItem = ({ movie }) => {
           <p>{movie.release_date}</p>
           <p>IMDB {movie.vote_average}</p>
           <div className="add-movie">
-            <i className="gg-remove" data-id={movie.id}></i>
+            <i
+              className="gg-remove"
+              data-id={movie.id}
+              onClick={() => removeMovie(movie.id)}
+            ></i>
             <p>Remove</p>
           </div>
         </div>

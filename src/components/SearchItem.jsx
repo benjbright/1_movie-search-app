@@ -1,4 +1,12 @@
-const SearchItem = ({ movie, addToWatchlist }) => {
+const SearchItem = ({ movie, addToWatchlist, watchlist }) => {
+  const checkWatchlist = watchlist.filter((item) => {
+    return item.id === movie.id
+  })
+
+  const inWatchlist = checkWatchlist.length === 1 ? "In watchlist" : "Watchlist"
+
+  const iconRender = checkWatchlist.length === 1 ? "gg-check-r" : "gg-add"
+
   const poster =
     movie.poster_path != null
       ? `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`
@@ -14,11 +22,11 @@ const SearchItem = ({ movie, addToWatchlist }) => {
           <p>IMDB {movie.vote_average}</p>
           <div className="add-movie">
             <i
-              className="gg-add"
+              className={iconRender}
               data-id={movie.id}
               onClick={() => addToWatchlist(movie.id)}
             ></i>
-            <p>Watchlist</p>
+            <p>{inWatchlist}</p>
           </div>
         </div>
         <p className="movie-overview">{movie.overview}</p>
