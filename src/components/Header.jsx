@@ -14,6 +14,12 @@ const Header = () => {
           to="/"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
+          <h2>Home</h2>
+        </NavLink>
+        <NavLink
+          to="/search"
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        >
           <h2>Search</h2>
         </NavLink>
         <NavLink

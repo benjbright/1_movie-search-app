@@ -2,6 +2,7 @@ import { useState } from "react"
 // import { Outlet } from "react-router-dom"
 import { Routes, Route } from "react-router-dom"
 import Header from "./components/Header"
+import Home from "./pages/Home"
 import Search from "./pages/Search"
 import Watchlist from "./pages/Watchlist"
 
@@ -94,8 +95,9 @@ function App() {
     <>
       <Header />
       <Routes>
+        <Route path="/" element={<Home watchlist={watchlist} />} />
         <Route
-          path="/"
+          path="/search"
           element={
             <Search
               onChange={handleChange}
