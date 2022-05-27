@@ -1,12 +1,13 @@
 const SearchItem = ({ movie, addToWatchlist, watchlist }) => {
+  // Check each search item against the watchlist to apply conditional formatting
   const checkWatchlist = watchlist.filter((item) => {
     return item.id === movie.id
   })
 
   const inWatchlist = checkWatchlist.length === 1 ? "In watchlist" : "Watchlist"
-
   const iconRender = checkWatchlist.length === 1 ? "gg-check-r" : "gg-add"
 
+  // Check for movie poster image and apply placeholder if none found
   const poster =
     movie.poster_path != null
       ? `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`

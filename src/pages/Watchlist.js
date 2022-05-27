@@ -1,16 +1,11 @@
 import WatchlistItem from "../components/WatchlistItem"
 
-const Watchlist = (props) => {
-  const data = props.watchlist
-  console.log(data)
+const Watchlist = ({ watchlist, removeMovie }) => {
+  const data = watchlist
 
   const displayWatchlistHtml = data.map((movie) => {
     return (
-      <WatchlistItem
-        key={movie.id}
-        movie={movie}
-        removeMovie={props.removeMovie}
-      />
+      <WatchlistItem key={movie.id} movie={movie} removeMovie={removeMovie} />
     )
   })
 

@@ -1,4 +1,5 @@
 const WatchlistItem = ({ movie, removeMovie }) => {
+  // Check the movie poster and apply default if none
   const poster =
     movie.poster_path != null
       ? `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`
