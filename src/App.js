@@ -92,33 +92,31 @@ function App() {
 
   return (
     <HashRouter>
-      <>
-        <Header />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Search
-                onChange={handleChange}
-                onClick={handleClick}
-                movieList={searchData}
-                addToWatchlist={addToWatchlist}
-                watchlist={watchlist}
-                error={errorMsg}
-              />
-            }
-          />
-          <Route
-            path="watchlist"
-            element={
-              <Watchlist
-                watchlist={watchlist}
-                removeMovie={removeFromWatchlist}
-              />
-            }
-          />
-        </Routes>
-      </>
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Search
+              onChange={handleChange}
+              onClick={handleClick}
+              movieList={searchData}
+              addToWatchlist={addToWatchlist}
+              watchlist={watchlist}
+              error={errorMsg}
+            />
+          }
+        />
+        <Route
+          path="/watchlist"
+          element={
+            <Watchlist
+              watchlist={watchlist}
+              removeMovie={removeFromWatchlist}
+            />
+          }
+        />
+      </Routes>
     </HashRouter>
   )
 }

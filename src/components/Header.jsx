@@ -17,7 +17,7 @@ const Header = () => {
           <h2>Search</h2>
         </NavLink>
         <NavLink
-          to="watchlist"
+          to="/watchlist"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           <h2>Watchlist</h2>
