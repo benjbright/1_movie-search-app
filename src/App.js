@@ -1,6 +1,6 @@
 import { useState } from "react"
+// import { Outlet } from "react-router-dom"
 import { Routes, Route } from "react-router-dom"
-import { HashRouter } from "react-router-dom"
 import Header from "./components/Header"
 import Search from "./pages/Search"
 import Watchlist from "./pages/Watchlist"
@@ -91,35 +91,33 @@ function App() {
   localStorage.setItem("watchList", JSON.stringify(watchlist))
 
   return (
-    <HashRouter>
-      <>
-        <Header />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Search
-                onChange={handleChange}
-                onClick={handleClick}
-                movieList={searchData}
-                addToWatchlist={addToWatchlist}
-                watchlist={watchlist}
-                error={errorMsg}
-              />
-            }
-          />
-          <Route
-            path="/watchlist"
-            element={
-              <Watchlist
-                watchlist={watchlist}
-                removeMovie={removeFromWatchlist}
-              />
-            }
-          />
-        </Routes>
-      </>
-    </HashRouter>
+    <>
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Search
+              onChange={handleChange}
+              onClick={handleClick}
+              movieList={searchData}
+              addToWatchlist={addToWatchlist}
+              watchlist={watchlist}
+              error={errorMsg}
+            />
+          }
+        />
+        <Route
+          path="/watchlist"
+          element={
+            <Watchlist
+              watchlist={watchlist}
+              removeMovie={removeFromWatchlist}
+            />
+          }
+        />
+      </Routes>
+    </>
   )
 }
 
