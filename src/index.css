@@ -22,7 +22,7 @@ header {
 
 header h1 {
   margin: 0;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 nav {
@@ -156,6 +156,13 @@ button {
 
 @media screen and (min-width: 1000px) {
   /* Adjust display for laptops */
+  header {
+    padding: 1em 3em;
+  }
+
+  .container {
+    padding: 1em 3em;
+  }
   h1 {
     font-size: 3rem;
   }
@@ -164,7 +171,7 @@ button {
     font-size: 1.5rem;
   }
 
-  nav a {
+  nav h2 {
     font-size: 1.5rem;
   }
 
