@@ -1,6 +1,11 @@
 import { useState } from "react"
 // import { Outlet } from "react-router-dom"
-import { Routes, Route } from "react-router-dom"
+import {
+  // BrowserRouter as Router,
+  HashRouter,
+  Routes,
+  Route,
+} from "react-router-dom"
 import Header from "./components/Header"
 import Home from "./pages/Home"
 import Search from "./pages/Search"
@@ -92,7 +97,7 @@ function App() {
   localStorage.setItem("watchList", JSON.stringify(watchlist))
 
   return (
-    <>
+    <HashRouter>
       <Header />
       <Routes>
         <Route path="/" element={<Home watchlist={watchlist} />} />
@@ -119,7 +124,7 @@ function App() {
           }
         />
       </Routes>
-    </>
+    </HashRouter>
   )
 }
 
