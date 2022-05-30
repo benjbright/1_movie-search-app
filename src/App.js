@@ -102,7 +102,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home watchlist={watchlist} />} />
         <Route
-          path="/search"
+          path="search"
           element={
             <Search
               onChange={handleChange}
@@ -115,7 +115,7 @@ function App() {
           }
         />
         <Route
-          path="/watchlist"
+          path="watchlist"
           element={
             <Watchlist
               watchlist={watchlist}
