@@ -14,7 +14,7 @@ import Watchlist from "./pages/Watchlist"
 function App() {
   // Check local storage and set state
   let checkLocalStorage = []
-  let moviesInLocalStorage = JSON.parse(localStorage.getItem("watchList"))
+  let moviesInLocalStorage = JSON.parse(localStorage.getItem("watchList")) || []
 
   if (moviesInLocalStorage.length > 0) {
     checkLocalStorage = moviesInLocalStorage

@@ -44,6 +44,18 @@ nav h2 {
   padding: 1em;
 }
 
+/* HOME PAGE */
+.home-watchlist__container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.home-watchlist__container img {
+  width: 100px;
+  margin: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 /* SEARCH BAR */
 form {
   display: flex;
