@@ -1,11 +1,5 @@
 import { useState } from "react"
-// import { Outlet } from "react-router-dom"
-import {
-  // BrowserRouter as Router,
-  HashRouter,
-  Routes,
-  Route,
-} from "react-router-dom"
+import { HashRouter, Routes, Route } from "react-router-dom"
 import Header from "./components/Header"
 import Home from "./pages/Home"
 import Search from "./pages/Search"
@@ -34,13 +28,16 @@ function App() {
     setSearchItem(e.target.value)
   }
 
-  const handleClick = () => {
+  const handleClick = (event) => {
+    event.preventDefault()
+    // console.log("HandleClick")
     fetchAPIData(searchItem)
     document.getElementById("search-form").value = ""
   }
 
   // Request the search item from the Movie DB API
   function fetchAPIData(request) {
+    // console.log("API called")
     const API_URL = `https://api.themoviedb.org/3/search/movie?api_key=4ea7e3ee9d47329823ae7c093d00d3f0&language=en-US&query=${request}&page=1&include_adult=false`
 
     fetch(API_URL)
@@ -56,7 +53,7 @@ function App() {
         const list = data.results
         const filteredList = list.filter(
           (movie) =>
-            // Apply a series of basic filters to the API data
+            // Apply a series of filters to the API data
             movie.release_date !== "" &&
             movie.overview !== "" &&
             movie.release_date !== undefined &&
